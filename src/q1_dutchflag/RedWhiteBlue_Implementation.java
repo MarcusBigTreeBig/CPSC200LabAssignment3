@@ -1,5 +1,11 @@
 package q1_dutchflag;
 
+/**
+ * Obtained from decompiling .jar file provided by Dr. Casperson
+ *
+ * Enum determining red, white, or blue for the Dutch Flag problem
+ */
+
 enum RedWhiteBlue_Implementation {
     Red,
     White,

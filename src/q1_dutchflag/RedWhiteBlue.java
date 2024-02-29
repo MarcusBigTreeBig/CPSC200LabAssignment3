@@ -1,5 +1,11 @@
 package q1_dutchflag;
 
+/**
+ * Obtained from decompiling .jar file provided by Dr. Casperson
+ *
+ * RedWhiteBlue class used for the Dutch Flag problem
+ */
+
 public class RedWhiteBlue implements Comparable<RedWhiteBlue> {
     private RedWhiteBlue_Implementation value;
     private static final RedWhiteBlue red;

@@ -5,6 +5,12 @@ import utilities.Utilities;
 import java.util.Comparator;
 import java.util.Random;
 
+/**
+ * Tests if all insertion sort algorithms from InsertionSorter are stable
+ * Takes only a certain amount of possible values, so that many elements have same value
+ * Stores the original order of each element to ensure remains the same after sort
+ */
+
 public class StabilityTesting {
     public static void main(String[] args) {
 
@@ -12,10 +18,18 @@ public class StabilityTesting {
         int size = 100;
         StabilityTestClass[] arr;
         int possibleValues = 3;
-        int[] amountOfEach;
+        int[] amountOfEach;//keeps track of original order of elements
         int correct;
         Random rand = new Random();
         Comparator<StabilityTestClass> stabilityOrder = new Comparator<StabilityTestClass>() {
+            /**
+             * If 2 objects have the same value, not compared
+             * Compares the place of the objects, to ensure it has stayed the same
+             *
+             * @param o1 the first object to be compared.
+             * @param o2 the second object to be compared.
+             * @return
+             */
             @Override
             public int compare(StabilityTestClass o1, StabilityTestClass o2) {
                 if (o1.value == o2.value) {
@@ -33,7 +47,7 @@ public class StabilityTesting {
             }
         };
 
-        //testing stability for sort 1
+        //testing stability for sort with no sentinel and no comparator
         correct = 0;
         for (int i = 0; i < tests; i++) {
             arr = new StabilityTestClass[size];
@@ -50,7 +64,7 @@ public class StabilityTesting {
         }
         System.out.println("Do all tests for sort 1 result in stable sorting: " + (correct == tests));
 
-        //testing stability for sort 2
+        //testing stability for sort with no sentinel and a comparator
         correct = 0;
         for (int i = 0; i < tests; i++) {
             arr = new StabilityTestClass[size];
@@ -67,7 +81,7 @@ public class StabilityTesting {
         }
         System.out.println("Do all tests for sort 2 result in stable sorting: " + (correct == tests));
 
-        //testing stability for sort 3
+        //testing stability for sort with a sentinel and no comparator
         correct = 0;
         for (int i = 0; i < tests; i++) {
             arr = new StabilityTestClass[size];
@@ -84,7 +98,7 @@ public class StabilityTesting {
         }
         System.out.println("Do all tests for sort 3 result in stable sorting: " + (correct == tests));
 
-        //testing stability for sort 4
+        //testing stability for sort with a sentinel and a comparator
         correct = 0;
         for (int i = 0; i < tests; i++) {
             arr = new StabilityTestClass[size];
@@ -104,7 +118,7 @@ public class StabilityTesting {
     }
     private static class StabilityTestClass implements Comparable<StabilityTestClass> {
         private int value;
-        private int place;
+        private int place;//the original placement for its value
         StabilityTestClass (int value, int place) {
             this.value = value;
             this.place = place;

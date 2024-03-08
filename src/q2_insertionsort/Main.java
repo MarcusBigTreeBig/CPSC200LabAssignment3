@@ -143,7 +143,12 @@ public class Main {
         sort4File.flush();
     }
 
-
+    /**
+     * Prints the elements of an array
+     *
+     * @param arr
+     * @param <E>
+     */
     public static <E> void printArr (E[] arr) {
         for (E e: arr) {
             System.out.print(e + " ");

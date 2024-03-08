@@ -56,12 +56,12 @@ public class InsertionSorter {
         int n = data.length;
         E e;
         int smallestIndex = 0;
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i < n; i++) {//finding sentinel
             if (data[smallestIndex].compareTo(data[i]) > 0) {
                 smallestIndex = i;
             }
         }
-        for (int j = smallestIndex; j > 0; j--) {
+        for (int j = smallestIndex; j > 0; j--) {//moving all down to ensure stability when adding sentinel
                 Utilities.swap(data, smallestIndex,  smallestIndex-j);
         }
         for (int i = 1; i < n; i++) {
@@ -84,12 +84,12 @@ public class InsertionSorter {
         int n = data.length;
         E e;
         int smallestIndex = 0;
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i < n; i++) {//finding sentinel
             if (pred.compare(data[smallestIndex], data[i]) > 0) {
                 smallestIndex = i;
             }
         }
-        for (int j = smallestIndex; j > 0; j--) {
+        for (int j = smallestIndex; j > 0; j--) {//moving all down to ensure stability when adding sentinel
             Utilities.swap(data, smallestIndex,  smallestIndex-j);
         }
         for (int i = 1; i < n; i++) {

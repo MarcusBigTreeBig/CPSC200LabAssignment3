@@ -116,14 +116,31 @@ public class StabilityTesting {
         System.out.println("Do all tests for sort 4 result in stable sorting: " + (correct == tests));
 
     }
+
+    /**
+     * Class that can remember it's original order within it's value
+     */
     private static class StabilityTestClass implements Comparable<StabilityTestClass> {
         private int value;
         private int place;//the original placement for its value
+
+        /**
+         * creates an element
+         *
+         * @param value
+         * @param place
+         */
         StabilityTestClass (int value, int place) {
             this.value = value;
             this.place = place;
         }
 
+        /**
+         * compares with value
+         *
+         * @param o the object to be compared.
+         * @return
+         */
         @Override
         public int compareTo(StabilityTestClass o) {
             return this.value-o.value;

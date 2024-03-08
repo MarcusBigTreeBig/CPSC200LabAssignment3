@@ -26,14 +26,16 @@ public class DutchFlagSolver {
             [Red)[White)[Blue)[Unsorted)
             0    w      b     i         n
              */
-            RedWhiteBlue_Implementation colour = getColour(arr[i]);
-            switch (colour) {
-                case Red:
-                    Utilities.swap(arr, i, w);
-                    w++;
-                case White:
-                    Utilities.swap(arr, i, b);
+            if (arr[i].isRed()) {
+                Utilities.swap(arr, i, w);
+                if (w == b) {
                     b++;
+                }
+                w++;
+            }
+            if (arr[i].isWhite()) {
+                Utilities.swap(arr, i, b);
+                b++;
             }
         }
     }

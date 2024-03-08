@@ -1,40 +1,48 @@
 package q2_insertionsort;
 
-import q1_dutchflag.DutchFlagSolver;
-import q1_dutchflag.RedWhiteBlue;
 import utilities.StopWatch;
 import utilities.Utilities;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
+
+/**
+ * Tests all insertion sort algorithms in InsertionSorter
+ * Times all algorithms to observe asymptotic complexity.
+ */
 
 public class Main {
     public static void main(String[] args) throws IOException {
         Random rand = new Random();
-        DutchFlagSolver dfs = new DutchFlagSolver();
-        FileWriter sort1File = new FileWriter("sort1times.txt");
-        FileWriter sort2File = new FileWriter("sort2times.txt");
-        FileWriter sort3File = new FileWriter("sort3times.txt");
-        FileWriter sort4File = new FileWriter("sort4times.txt");
+        FileWriter sort1File = new FileWriter("sort1times.txt");//no sentinel and no comparator
+        FileWriter sort2File = new FileWriter("sort2times.txt");//no sentinel and comparator
+        FileWriter sort3File = new FileWriter("sort3times.txt");//sentinel and no comparator
+        FileWriter sort4File = new FileWriter("sort4times.txt");//sentinel and comparator
 
         int timings = 100;
         int increment = 100;
         int trials = 100;
-        int correct = 0;
+        int correct;
         Integer[] arr;
         StopWatch clock = new StopWatch();
 
         Comparator<Integer> reverseOrder = new Comparator<Integer>() {
+            /**
+             * Compares Integer objects in reverse order to test sorting with a comparator
+             *
+             * @param o1 the first object to be compared.
+             * @param o2 the second object to be compared.
+             * @return
+             */
             @Override
             public int compare(Integer o1, Integer o2) {
                 return -1*o1.compareTo(o2);
             }
         };
 
-        //test and time sort 1
+        //test and time sort with no sentinel and no comparator
         correct = 0;
         for (int i = increment; i < timings*increment; i += increment) {
             clock.reset();
@@ -59,7 +67,7 @@ public class Main {
         sort1File.write("Do all tests succeed: " + (correct == (timings-1)*trials));
         sort1File.flush();
 
-        //test and time sort 2
+        //test and time sort with no sentinel, but a comparator
         correct = 0;
         for (int i = increment; i < timings*increment; i += increment) {
             clock.reset();
@@ -84,7 +92,7 @@ public class Main {
         sort2File.write("Do all tests succeed: " + (correct == (timings-1)*trials));
         sort2File.flush();
 
-        //test and time sort 3
+        //test and time sort with a sentinel, but no comparator
         correct = 0;
         for (int i = increment; i < timings*increment; i += increment) {
             clock.reset();
@@ -109,7 +117,7 @@ public class Main {
         sort3File.write("Do all tests succeed: " + (correct == (timings-1)*trials));
         sort3File.flush();
 
-        //test and time sort 4
+        //test and time sort with both a sentinel and a comparator
         correct = 0;
         for (int i = increment; i < timings*increment; i += increment) {
             clock.reset();

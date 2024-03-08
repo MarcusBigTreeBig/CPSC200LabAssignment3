@@ -61,7 +61,9 @@ public class InsertionSorter {
                 smallestIndex = i;
             }
         }
-        Utilities.swap(data, 0, smallestIndex);
+        for (int j = smallestIndex; j > 0; j--) {
+                Utilities.swap(data, smallestIndex,  smallestIndex-j);
+        }
         for (int i = 1; i < n; i++) {
             e = data[i];
             for (int j = i-1; e.compareTo(data[j]) < 0; --j) {//insertion
@@ -87,7 +89,9 @@ public class InsertionSorter {
                 smallestIndex = i;
             }
         }
-        Utilities.swap(data, 0, smallestIndex);
+        for (int j = smallestIndex; j > 0; j--) {
+            Utilities.swap(data, smallestIndex,  smallestIndex-j);
+        }
         for (int i = 1; i < n; i++) {
             e = data[i];
             for (int j = i-1; pred.compare(e, data[j]) < 0; --j) {//insertion

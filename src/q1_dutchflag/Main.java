@@ -7,7 +7,13 @@ import java.io.IOException;
 import java.util.Comparator;
 import java.util.Random;
 
+/**
+ * Tests that both methods of solving the dutch flag problem works
+ * Times both methods at various sizes to observe the asymptotic complexity
+ */
+
 public class Main {
+
     public static void main(String[] args) throws IOException {
         Random rand = new Random();
         DutchFlagSolver dfs = new DutchFlagSolver();
@@ -15,6 +21,13 @@ public class Main {
         FileWriter method2File = new FileWriter("method2times.txt");
 
         Comparator<RedWhiteBlue> comp = new Comparator<RedWhiteBlue>() {
+            /**
+             * Compares in order of red, white, blue
+             *
+             * @param o1 the first object to be compared.
+             * @param o2 the second object to be compared.
+             * @return
+             */
             @Override
             public int compare(RedWhiteBlue o1, RedWhiteBlue o2) {
                 if (o1.isRed() || o2.isBlue()) {
@@ -26,6 +39,7 @@ public class Main {
                 return 1;
             }
         };
+
         int timings = 100;
         int increment = 1000;
         int trials = 100;
@@ -54,7 +68,7 @@ public class Main {
         method1File.write("Do all tests succeed: " + (correct == timings*trials));
         method1File.flush();
 
-        //test and time method 1
+        //test and time method 2
         correct = 0;
         for (int i = 0; i < timings*increment; i += increment) {
             clock.reset();
@@ -76,6 +90,13 @@ public class Main {
         method2File.write("Do all tests succeed: " + (correct == timings*trials));
         method2File.flush();
     }
+
+    /**
+     * Prints out the elements of an array
+     *
+     * @param arr
+     * @param <E>
+     */
     public static <E> void printArr (E[] arr) {
         for (E e: arr) {
             System.out.print(e + " ");
